@@ -150,7 +150,7 @@ try {
                     <td><?= $blob->getName() ?></td>
                     <td><?= $blob->getUrl() ?></td>
                     <td><img width="100" height="100" src="data:image/jpeg;base64,<?= $imgData ?>" /></td>
-                    <td><button class="btn btn-primary" onclick="processImage('<?= $subscriptionKey ?>','data:image/jpeg;base64,<?= $imgData ?>')">Analyze image</button></td>
+                    <td><button class="btn btn-primary" onclick="processImage('data:image/jpeg;base64,<?= $imgData ?>')">Analyze image</button></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
@@ -188,6 +188,7 @@ try {
 <body class="container">
 
     <script type="text/javascript">
+        var subskey = '<?= $subscriptionKey ?>';
         makeblob = function(dataURL) {
             var BASE64_MARKER = ';base64,';
             if (dataURL.indexOf(BASE64_MARKER) == -1) {
@@ -214,7 +215,7 @@ try {
             });
         }
 
-        function processImage(subskey, blob) {
+        function processImage(blob) {
             // **********************************************
             // *** Update or verify the following values. ***
             // **********************************************
